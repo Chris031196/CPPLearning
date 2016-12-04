@@ -1,68 +1,40 @@
+#ifndef UNICODE
+#define UNICODE
+#endif
+
+#ifndef _UNICODE
+#define _UNICODE
+#endif
+
 #include <Windows.h>
 #include <stdio.h>
+#include "FileChooser.h"
 
-LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+int WINAPI wWinMain(HINSTANCE instance, HINSTANCE, PWSTR pCmdLine, int nCmdShow) 
+{
+	HRESULT hr = NULL;
+	LPWSTR path = NULL;
+	FileChooser* f = new FileChooser();
 
-int WINAPI wWinMain(HINSTANCE instance, HINSTANCE, PWSTR pCmdLine, int nCmdShow) {
-	WNDCLASS wc = {};
-	LPCSTR class_name = "Fenster";
+	hr = f->Init();
 
-	wc.lpfnWndProc = WindowProc;
-	wc.hInstance = instance;
-	wc.lpszClassName = class_name;
+	if (SUCCEEDED(hr)) {
+		hr = f->Show();
 
-	RegisterClass(&wc);
-
-	HWND hwnd = CreateWindow(
-		class_name, 
-		"Test Fenster", 
-		WS_OVERLAPPEDWINDOW, 
-		CW_USEDEFAULT, 
-		CW_USEDEFAULT, 
-		CW_USEDEFAULT, 
-		CW_USEDEFAULT, 
-		NULL, 
-		NULL, 
-		instance, 
-		NULL);
-
-	if (!hwnd) return 0;
-
-	ShowWindow(hwnd, nCmdShow);
-
-	MSG msg;
-	BOOL rslt = GetMessage(&msg, NULL, 0, 0);
-	while (rslt) {
-		TranslateMessage(&msg);
-		DispatchMessage(&msg);
-		rslt = GetMessage(&msg, NULL, 0, 0);
-	}
-	return 0;
-
-}
-
-LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
-	switch (uMsg) {
-	case WM_PAINT:
-	{
-		PAINTSTRUCT ps;
-		HDC hdc = BeginPaint(hwnd, &ps);
-
-		FillRect(hdc, &ps.rcPaint, (HBRUSH)(COLOR_WINDOW + 1));
-
-		EndPaint(hwnd, &ps);
-	}
-		return 0;
-
-	case WM_CLOSE:
-		if (MessageBox(hwnd, "Wirklich schließen?", "LEL", MB_OKCANCEL) == IDOK) {
-			DestroyWindow(hwnd);
+		if (SUCCEEDED(hr)) {
+			hr = f->Get_Result(&path);
+			MessageBoxW(NULL, path, L"Pfad", MB_OK);
+			CoTaskMemFree(path);
 		}
-		return 0; //kek
-
-	case WM_DESTROY:
-		PostQuitMessage(0);
-		break;
+		else {
+			MessageBox(NULL, L"Show failed!", L"ERROR!", MB_OK | MB_ICONERROR);
+		}
 	}
-	return DefWindowProc(hwnd, uMsg, wParam, lParam);
+	else {
+		MessageBox(NULL, L"Initialization failed!", L"ERROR!", MB_OK);
+	}
+
+	delete f;
+
+	return 0;
 }
