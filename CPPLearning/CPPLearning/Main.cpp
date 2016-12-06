@@ -10,8 +10,7 @@
 #include <stdio.h>
 #include "FileChooser.h"
 
-int WINAPI wWinMain(HINSTANCE instance, HINSTANCE, PWSTR pCmdLine, int nCmdShow) 
-{
+void COMExample() {
 	HRESULT hr = NULL;
 	LPWSTR path = NULL;
 	FileChooser* f = new FileChooser();
@@ -35,6 +34,17 @@ int WINAPI wWinMain(HINSTANCE instance, HINSTANCE, PWSTR pCmdLine, int nCmdShow)
 	}
 
 	delete f;
+}
+
+void Direct2DExample() {
+
+}
+
+int WINAPI wWinMain(HINSTANCE instance, HINSTANCE, PWSTR pCmdLine, int nCmdShow) 
+{
+	//COMExample();
+
+	Direct2DExample();
 
 	return 0;
 }
