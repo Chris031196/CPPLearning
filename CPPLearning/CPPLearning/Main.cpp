@@ -9,6 +9,7 @@
 #include <Windows.h>
 #include <stdio.h>
 #include "FileChooser.h"
+#include "D2DWindow.h"
 
 void COMExample() {
 	HRESULT hr = NULL;
@@ -36,15 +37,17 @@ void COMExample() {
 	delete f;
 }
 
-void Direct2DExample() {
-
+void Direct2DExample(HINSTANCE instance, int nCmdShow) {
+	D2DWindow* win = new D2DWindow();
+	win->Init(instance, "Test", "Test Fenster", nCmdShow, 300, 200);
+	win->Show();
 }
 
 int WINAPI wWinMain(HINSTANCE instance, HINSTANCE, PWSTR pCmdLine, int nCmdShow) 
 {
 	//COMExample();
 
-	Direct2DExample();
+	Direct2DExample(instance, nCmdShow);
 
 	return 0;
 }
