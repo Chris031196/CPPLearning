@@ -37,17 +37,26 @@ void COMExample() {
 	delete f;
 }
 
-void Direct2DExample(HINSTANCE instance, int nCmdShow) {
+void Direct2DExample(int nCmdShow) {
 	D2DWindow* win = new D2DWindow();
-	win->Init(instance, "Test", "Test Fenster", nCmdShow, 300, 200);
-	win->Show();
+	if (win->Init(L"Test Fenster", nCmdShow)) {
+		if (win->Show()) {
+			MSG msg = {};
+			while (GetMessage(&msg, NULL, 0, 0)) {
+				TranslateMessage(&msg);
+				DispatchMessage(&msg);
+			}
+		}
+	}
+	
+	delete win;
 }
 
 int WINAPI wWinMain(HINSTANCE instance, HINSTANCE, PWSTR pCmdLine, int nCmdShow) 
 {
 	//COMExample();
 
-	Direct2DExample(instance, nCmdShow);
+	Direct2DExample(nCmdShow);
 
 	return 0;
 }
