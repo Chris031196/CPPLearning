@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include "FileChooser.h"
 #include "D2DWindow.h"
+#include "DrawWindow.h"
 
 void COMExample() {
 	HRESULT hr = NULL;
@@ -52,11 +53,39 @@ void Direct2DExample(int nCmdShow) {
 	delete win;
 }
 
+void MouseExample(int nCmdShow) {
+	DrawWindow* win(new DrawWindow());
+	if (win->Init(L"Draw Circles", nCmdShow)) {
+		if (win->Show()) {
+			MSG msg = {};
+			while (GetMessage(&msg, NULL, 0, 0)) {
+				TranslateMessage(&msg);
+				DispatchMessage(&msg);
+			}
+		}
+	}
+
+	delete win;
+}
+
+void Clip() {
+	RECT rect;
+	rect.left = 500;
+	rect.right = 500;
+	rect.top = 500;
+	rect.bottom = 500;
+	ClipCursor(&rect);
+}
+
 int WINAPI wWinMain(HINSTANCE instance, HINSTANCE, PWSTR pCmdLine, int nCmdShow) 
 {
 	//COMExample();
 
-	Direct2DExample(nCmdShow);
+	//Direct2DExample(nCmdShow);
+
+	MouseExample(nCmdShow);
+
+	//Clip();
 
 	return 0;
 }

@@ -120,12 +120,14 @@
   <ItemGroup>
     <ClCompile Include="BaseWindow.cpp" />
     <ClCompile Include="D2DWindow.cpp" />
+    <ClCompile Include="DrawWindow.cpp" />
     <ClCompile Include="FileChooser.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseWindow.h" />
     <ClInclude Include="D2DWindow.h" />
+    <ClInclude Include="DrawWindow.h" />
     <ClInclude Include="FileChooser.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
