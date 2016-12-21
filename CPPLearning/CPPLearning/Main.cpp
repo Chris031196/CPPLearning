@@ -11,6 +11,7 @@
 #include "FileChooser.h"
 #include "D2DWindow.h"
 #include "DrawWindow.h"
+#include "PaintWindow.h"
 
 void COMExample() {
 	HRESULT hr = NULL;
@@ -54,8 +55,8 @@ void Direct2DExample(int nCmdShow) {
 }
 
 void MouseExample(int nCmdShow) {
-	DrawWindow* win(new DrawWindow());
-	if (win->Init(L"Draw Circles", nCmdShow)) {
+	PaintWindow* win(new PaintWindow());
+	if (win->Init(L"UTASD", nCmdShow)) {
 		if (win->Show()) {
 			MSG msg = {};
 			while (GetMessage(&msg, NULL, 0, 0)) {

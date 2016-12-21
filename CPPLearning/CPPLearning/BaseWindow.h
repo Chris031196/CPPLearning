@@ -1,8 +1,13 @@
+#ifndef UNICODE
+#define UNICODE
+#endif
+
+#ifndef _UNICODE
+#define _UNICODE
+#endif
+
 #pragma once
 #include <Windows.h>
-
-#include <iostream>
-#include <conio.h>
 
 template<class T>
 void SafeRelease(T** ptr) {
@@ -16,7 +21,8 @@ template <class WindowType>
 class BaseWindow
 {
 public:
-	static LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+	static LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+	{
 		WindowType *pThis = NULL;
 
 		if (uMsg == WM_NCCREATE)
@@ -31,7 +37,6 @@ public:
 		{
 			pThis = (WindowType*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
 		}
-
 		if (pThis)
 		{
 			return pThis->HandleMessage(uMsg, wParam, lParam);
@@ -57,6 +62,7 @@ public:
 		wndClass.lpfnWndProc = WindowType::WindowProc;
 		wndClass.hInstance = GetModuleHandle(NULL);
 		wndClass.lpszClassName = ClassName();
+		wndClass.hCursor = LoadCursor(GetModuleHandle(NULL), IDC_NO);
 
 		RegisterClass(&wndClass);
 

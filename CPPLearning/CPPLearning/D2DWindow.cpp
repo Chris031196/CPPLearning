@@ -140,7 +140,7 @@ BOOL D2DWindow::OnPaint()
 		m_rTarget->FillEllipse(ellipse, m_BrushBG);
 		m_rTarget->DrawEllipse(ellipse, m_BrushFG);
 
-		//DrawClock();
+		DrawClock();
 
 		HRESULT hr = m_rTarget->EndDraw();
 		EndPaint(m_hwnd, &ps);

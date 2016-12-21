@@ -10,6 +10,9 @@ DrawWindow::~DrawWindow()
 LRESULT DrawWindow::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	switch (uMsg) {
+	case WM_SETCURSOR:
+		//SetCursor(NULL);
+		break;
 	case WM_CREATE:
 		return OnCreate();
 	case WM_DESTROY:

@@ -1,31 +1,31 @@
 #include "BaseWindow.h"
 
-//template<class WindowType>
-//static LRESULT CALLBACK BaseWindow<WindowType>::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) 
-//{
-//	WindowType *pThis = NULL;
-//
-//	if (uMsg == WM_NCCREATE)
-//	{
-//		CREATESTRUCT* pCreate = (CREATESTRUCT*)lParam;
-//		pThis = (WindowType*)pCreate->lpCreateParams;
-//		SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)pThis);
-//
-//		pThis->m_hwnd = hwnd;
-//	}
-//	else
-//	{
-//		pThis = (WindowType*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
-//	}
-//	if (pThis)
-//	{
-//		return pThis->HandleMessage(uMsg, wParam, lParam);
-//	}
-//	else
-//	{
-//		return DefWindowProc(hwnd, uMsg, wParam, lParam);
-//	}
-//}
+/*template<class WindowType>
+static LRESULT CALLBACK BaseWindow<WindowType>::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) 
+{
+	WindowType *pThis = NULL;
+
+	if (uMsg == WM_NCCREATE)
+	{
+		CREATESTRUCT* pCreate = (CREATESTRUCT*)lParam;
+		pThis = (WindowType*)pCreate->lpCreateParams;
+		SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)pThis);
+
+		pThis->m_hwnd = hwnd;
+	}
+	else
+	{
+		pThis = (WindowType*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
+	}
+	if (pThis)
+	{
+		return pThis->HandleMessage(uMsg, wParam, lParam);
+	}
+	else
+	{
+		return DefWindowProc(hwnd, uMsg, wParam, lParam);
+	}
+}*/
 
 
 //template<class WindowType>
